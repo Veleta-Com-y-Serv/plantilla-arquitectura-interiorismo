@@ -1,0 +1,153 @@
+/* Arquitectura e interiorismo — concepto «planta y sección»: bandas a sangre blancas, negras y terracota,
+   sans ligera enorme, antetítulos en mayúsculas espaciadas con una línea de cota y fotos de borde a borde.
+   Colores: --c-primario (bandas oscuras), --c-acento (terracota), --c-fondo (blanco), --c-texto (tinta). */
+@import "tailwindcss";
+@import "./comun.css";
+@config "../../tailwind.config.mjs";
+
+:root {
+  --fuente-texto: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --fuente-titulos: "Segoe UI Variable Display", "Helvetica Neue", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --radio: 0;
+  --ritmo: 5rem;
+  --ritmo-md: 9rem;
+  --ancho: 90rem;
+  --alto-cabecera: 4.25rem;
+  /* Derivados de la paleta (aguantan que el cliente cambie los cuatro colores). */
+  --c-linea: color-mix(in srgb, var(--c-texto) 14%, transparent);
+  --c-suave: color-mix(in srgb, var(--c-texto) 68%, var(--c-fondo));
+  --c-papel: color-mix(in srgb, var(--c-texto) 4%, var(--c-fondo));
+  --c-oscuro-linea: color-mix(in srgb, var(--c-fondo) 16%, transparent);
+  --c-acento-hondo: color-mix(in srgb, var(--c-acento) 82%, black);
+}
+@media (min-width: 768px) { :root { --alto-cabecera: 5rem; } }
+
+@layer base {
+  body { font-family: var(--fuente-texto); font-size: 1rem; line-height: 1.6; background: var(--c-fondo); }
+  h1, h2, h3 { font-family: var(--fuente-titulos); font-weight: 200; letter-spacing: -0.035em; line-height: 1; }
+  html { scroll-padding-top: var(--alto-cabecera); }
+}
+
+@layer components {
+  /* ── Tipografía ─────────────────────────────────────────────────────────── */
+  .antetitulo { display: flex; align-items: center; gap: .9rem; font-size: .72rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; }
+  .antetitulo::before { content: ""; flex: none; width: 2.5rem; height: 1px; background: var(--c-acento); }
+  .sobre-acento .antetitulo::before, .sobre-foto .antetitulo::before { background: currentColor; }
+  .etiqueta { font-size: .7rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+  .titulo-seccion { font-size: clamp(2.5rem, 6.4vw, 5.75rem); margin-top: 1.1rem; }
+  .titulo-gigante { font-size: clamp(3rem, 8.2vw, 7.75rem); line-height: .95; letter-spacing: -0.045em; }
+  .titular { max-width: 72rem; margin-bottom: 3.5rem; }
+  .titular--centro { margin-inline: auto; text-align: center; }
+  .titular-texto { margin-top: 1.5rem; max-width: 38rem; font-size: 1.075rem; color: var(--c-suave); }
+  .en-oscuro .titular-texto { color: color-mix(in srgb, var(--c-fondo) 75%, transparent); }
+  .numero { font-family: var(--fuente-titulos); font-weight: 200; font-variant-numeric: tabular-nums; letter-spacing: -0.04em; line-height: 1; }
+
+  /* Línea de cota (motivo de plano): raya fina con los dos topes verticales. */
+  .cota { position: relative; height: 1px; background: currentColor; opacity: .6; }
+  .cota::before, .cota::after { content: ""; position: absolute; top: -5px; width: 1px; height: 11px; background: currentColor; }
+  .cota::before { left: 0; }
+  .cota::after { right: 0; }
+
+  /* Bandas */
+  .banda-clara { background: var(--c-fondo); color: var(--c-texto); }
+  .banda-papel { background-color: var(--c-papel); color: var(--c-texto);
+    background-image: linear-gradient(var(--c-linea) 1px, transparent 1px), linear-gradient(90deg, var(--c-linea) 1px, transparent 1px);
+    background-size: 3rem 3rem; background-position: -1px -1px; }
+  .banda-oscura { background: var(--c-primario); color: var(--c-fondo); }
+  .banda-acento { background: var(--c-acento); color: var(--c-fondo); }
+  /* Retícula de columnas de plano sobre las bandas oscuras. */
+  .reticula { position: relative; isolation: isolate; }
+  .reticula::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .55;
+    background-image: linear-gradient(90deg, var(--c-oscuro-linea) 1px, transparent 1px); background-size: calc(100% / 4) 100%; }
+  @media (min-width: 1024px) { .reticula::before { background-size: calc(100% / 12) 100%; } }
+
+  /* ── Botones ────────────────────────────────────────────────────────────── */
+  .btn, .btn-sec { min-height: 3rem; padding: .8rem 1.6rem; font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; border-radius: 0; }
+  .btn { background: var(--c-acento); color: var(--c-fondo); border: 1px solid var(--c-acento); }
+  .btn:hover { background: var(--c-acento-hondo); border-color: var(--c-acento-hondo); }
+  .btn-sec { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .btn-sec:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+  .btn-tinta { background: var(--c-primario); border-color: var(--c-primario); color: var(--c-fondo); }
+  .btn-tinta:hover { background: color-mix(in srgb, var(--c-primario) 80%, var(--c-fondo)); border-color: transparent; }
+  .flecha { display: inline-block; transition: transform .2s ease; }
+  a:hover > .flecha { transform: translateX(4px); }
+  .enlace { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s ease; }
+  .enlace:hover { background-size: 100% 1px; }
+
+  /* ── Cabecera fija (transparente sobre la portada, sólida al bajar) ──────── */
+  .cabecera { position: fixed; inset: 0 0 auto 0; z-index: 50; background: var(--c-fondo); color: var(--c-texto); border-bottom: 1px solid var(--c-linea); transition: background-color .3s ease, color .3s ease, border-color .3s ease; }
+  .cabecera .cabecera-fila { min-height: var(--alto-cabecera); gap: 1.5rem; }
+  .cabecera--sobre:not(.cabecera--solida):not(:has(details[open])) { background: transparent; color: #fff; border-bottom-color: rgb(255 255 255 / .22); }
+  .cabecera--sobre:not(.cabecera--solida):not(:has(details[open])) .btn { background: transparent; border-color: rgb(255 255 255 / .8); color: #fff; }
+  .cabecera--sobre:not(.cabecera--solida):not(:has(details[open])) .btn:hover { background: #fff; color: #111; }
+  .marca-inicial { display: inline-grid; place-items: center; flex: none; width: 2.1rem; height: 2.1rem; border: 1px solid currentColor; font-size: .95rem; font-weight: 300; position: relative; }
+  .marca-inicial::after { content: ""; position: absolute; right: -1px; bottom: -1px; width: .55rem; height: .55rem; background: var(--c-acento); }
+  .marca-nombre { font-family: var(--fuente-titulos); font-size: 1.15rem; font-weight: 300; letter-spacing: -0.01em; }
+  .cabecera-nav { gap: 2rem; }
+  .cabecera-nav a { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; padding-block: .5rem; background: linear-gradient(var(--c-acento), var(--c-acento)) 0 100% / 0 2px no-repeat; transition: background-size .25s ease; }
+  .cabecera-nav a:hover { background-size: 100% 2px; }
+  .cabecera .cabecera-cta { min-height: 2.75rem; padding: .6rem 1.2rem; }
+  .menu-movil summary { min-height: 2.75rem; padding: .5rem .25rem; font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+  .menu-movil-panel { padding: .5rem 1rem 1.5rem; border-bottom: 1px solid var(--c-linea); box-shadow: 0 24px 40px rgb(0 0 0 / .14); max-height: calc(100svh - var(--alto-cabecera)); overflow-y: auto; }
+  .menu-movil-panel a { min-height: 3rem; display: flex; align-items: center; font-family: var(--fuente-titulos); font-size: 1.6rem; font-weight: 200; letter-spacing: -0.02em; border-bottom-color: var(--c-linea); }
+  .menu-movil-panel .btn { font-family: var(--fuente-texto); font-size: .78rem; font-weight: 600; letter-spacing: .16em; }
+  /* Lo que va primero en la página, si no es la portada, deja sitio a la cabecera fija. */
+  main > :first-child:not(.hero) { margin-top: var(--alto-cabecera); }
+
+  /* ── Pie ────────────────────────────────────────────────────────────────── */
+  .pie { padding-top: 5rem; background: var(--c-primario); color: var(--c-fondo); }
+  .pie-rejilla { gap: 2.5rem; }
+  @media (min-width: 768px) { .pie-rejilla { grid-template-columns: 1.6fr 1fr 1fr; } }
+  .pie-nombre { font-family: var(--fuente-titulos); font-size: 1.9rem; font-weight: 200; letter-spacing: -0.03em; }
+  .pie-titulo { font-size: .7rem; font-weight: 600; letter-spacing: .22em; opacity: .7; margin-bottom: 1rem; }
+  .pie-lista a { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .25s; }
+  .pie-lista a:hover { text-decoration: none; background-size: 100% 1px; }
+  .pie-redes a { min-width: 2.75rem; min-height: 2.75rem; align-items: center; justify-content: center; border: 1px solid var(--c-oscuro-linea); }
+  .pie-redes a:hover { border-color: var(--c-acento); color: var(--c-acento); }
+  .pie-firma { font-family: var(--fuente-titulos); font-weight: 200; font-size: clamp(3rem, 13.5vw, 13rem); line-height: .9; letter-spacing: -0.055em; white-space: nowrap; overflow: hidden; color: color-mix(in srgb, var(--c-fondo) 14%, transparent); user-select: none; }
+  .pie-legal { margin-top: 0; border-top-color: var(--c-oscuro-linea); }
+
+  /* ── Formulario ─────────────────────────────────────────────────────────── */
+  .formulario { gap: 1.6rem; }
+  .formulario .campo label { font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+  .formulario .campo input, .formulario .campo textarea { border: 0; border-bottom: 1px solid currentColor; padding: .7rem 0; border-radius: 0; font-size: 1.05rem; }
+  .formulario .campo input:focus-visible, .formulario .campo textarea:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .formulario-aviso { opacity: .85; }
+  .sobre-acento :focus-visible { outline-color: var(--c-fondo); }
+  .sobre-acento .campo-check input { accent-color: var(--c-primario); }
+
+  /* ── Acordeón de preguntas ──────────────────────────────────────────────── */
+  .faq summary { list-style: none; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq-signo { position: relative; width: 1.4rem; height: 1.4rem; flex: none; }
+  .faq-signo::before, .faq-signo::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: currentColor; transition: transform .25s ease; }
+  .faq-signo::after { transform: rotate(90deg); }
+  .faq[open] .faq-signo::after { transform: rotate(0deg); }
+  .faq[open] .faq-signo { color: var(--c-acento); }
+
+  /* ── Mosaico de proyectos (borde a borde, asimétrico) ───────────────────── */
+  .mosaico { display: grid; gap: 3px; grid-template-columns: 1fr; }
+  .mosaico > li[hidden] { display: none; }
+  .mosaico > li > figure { position: relative; height: 100%; margin: 0; overflow: hidden; background: color-mix(in srgb, var(--c-texto) 14%, var(--c-fondo)); aspect-ratio: 4 / 3.6; }
+  .mosaico img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .mosaico li:hover img { transform: scale(1.04); }
+  .mosaico figcaption { position: absolute; inset: auto 0 0 0; padding: 5rem 1rem 1.1rem; color: #fff; background: linear-gradient(to top, rgb(0 0 0 / .8), rgb(0 0 0 / .4) 55%, transparent); }
+  @media (min-width: 768px) {
+    .mosaico { grid-template-columns: repeat(6, 1fr); grid-auto-rows: clamp(13rem, 22vw, 23rem); grid-auto-flow: dense; }
+    .mosaico > li > figure { aspect-ratio: auto; }
+    .mosaico figcaption { padding: 5rem 1.75rem 1.5rem; }
+    /* Cada pieza trae su tamaño en la rejilla de 6 columnas (--col, --fil) desde proyectos.astro. */
+    .mosaico > li { grid-column: span var(--col, 2); grid-row: span var(--fil, 1); }
+  }
+  .filtro { min-height: 2.75rem; padding: .55rem 1.1rem; font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; border: 1px solid var(--c-linea); background: transparent; color: inherit; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+  .filtro { flex: none; }
+  .filtros { scrollbar-width: none; }
+  .filtros::-webkit-scrollbar { display: none; }
+  .comilla { font-family: Georgia, "Times New Roman", serif; }
+  .filtro:hover { border-color: var(--c-texto); }
+  .filtro[aria-pressed="true"] { background: var(--c-texto); color: var(--c-fondo); border-color: var(--c-texto); }
+
+  /* ── Textos largos (aviso legal) ────────────────────────────────────────── */
+  .texto-largo h2 { margin-top: 2.75rem; font-family: var(--fuente-titulos); font-size: 1.8rem; font-weight: 300; letter-spacing: -0.02em; }
+  .texto-largo p { color: var(--c-suave); }
+}

@@ -1,0 +1,64 @@
+---
+// Servicios: banda oscura con retícula de plano; las fichas forman una franja de borde a borde
+// (foto a sangre arriba si la hay, número, título y texto) separadas por líneas finas. 2 columnas en tableta, 3-4 en escritorio.
+// Campos: antetitulo, titulo, texto, `items[]` {titulo, texto, imagen}, cta.
+// También sirve de diseño para apartados nuevos (`tipo: servicios`).
+import { seccion, orden, boton } from '../../data/site';
+import { altFicha } from '../../lib/seo';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const items = s ? s.items.filter((it) => it && it.titulo) : [];
+const cols = items.length % 3 === 0 ? 'lg:grid-cols-3' : 'lg:grid-cols-4';
+const cta = boton(s?.cta);
+---
+
+{
+  s && (
+    <Seccion id={id} banda="oscura" sinContenedor class={items.length > 0 ? '!pb-0' : ''}>
+      <div class="contenedor flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} class="!mb-0" />
+        {cta && <p class="shrink-0"><a class="btn" href={cta.url}>{cta.texto} <span class="flecha" aria-hidden="true">→</span></a></p>}
+      </div>
+      {items.length > 0 && (
+        <ul class:list={['mt-14 grid border-t border-[var(--c-oscuro-linea)] md:mt-20 md:grid-cols-2', cols]}>
+          {items.map((it, i) => (
+            <li class="servicio flex flex-col border-[var(--c-oscuro-linea)]">
+              {it.imagen && (
+                <div class="overflow-hidden">
+                  <Imagen src={it.imagen} alt={altFicha(it)} ancho={900} alto={700} class="aspect-[16/10] w-full object-cover md:aspect-[4/3] opacity-90 transition-transform duration-700 hover:scale-105" />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col px-4 pt-8 pb-12 md:px-8 lg:pt-10 lg:pb-16">
+                <span class="numero text-5xl text-acento md:text-6xl">{orden(i)}</span>
+                <h3 class="mt-8 text-[1.9rem] md:text-[2.2rem]">{it.titulo}</h3>
+                {it.texto && <p class="mt-4 max-w-sm text-[color-mix(in_srgb,var(--c-fondo)_75%,transparent)]">{it.texto}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Seccion>
+  )
+}
+
+<style>
+  .servicio + .servicio { border-top-width: 1px; }
+  @media (min-width: 768px) {
+    .servicio + .servicio { border-top-width: 0; }
+    .servicio:nth-child(n + 3) { border-top-width: 1px; }
+    .servicio:nth-child(2n) { border-left-width: 1px; }
+  }
+  @media (min-width: 1024px) {
+    ul.lg\:grid-cols-4 > .servicio:nth-child(n + 3) { border-top-width: 0; }
+    ul.lg\:grid-cols-4 > .servicio:nth-child(n + 5) { border-top-width: 1px; }
+    ul.lg\:grid-cols-4 > .servicio:not(:nth-child(4n + 1)) { border-left-width: 1px; }
+    ul.lg\:grid-cols-3 > .servicio:nth-child(n + 3) { border-top-width: 0; }
+    ul.lg\:grid-cols-3 > .servicio:nth-child(n + 4) { border-top-width: 1px; }
+    ul.lg\:grid-cols-3 > .servicio:nth-child(2n) { border-left-width: 0; }
+    ul.lg\:grid-cols-3 > .servicio:not(:nth-child(3n + 1)) { border-left-width: 1px; }
+  }
+</style>

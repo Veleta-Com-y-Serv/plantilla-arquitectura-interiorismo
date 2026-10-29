@@ -1,0 +1,69 @@
+---
+// Contacto: banda partida a sangre. A la izquierda, sobre el fondo, el titular, el correo enorme y los datos;
+// a la derecha, hasta el borde de la ventana, el formulario sobre el color de acento.
+// Campos: antetitulo, titulo, texto (+ site.yaml → contacto).
+import { seccion, site, tel, whatsapp, mapa } from '../../data/site';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+---
+
+{
+  s && (
+    <section id={id} class="contacto grid lg:grid-cols-2">
+      <div class="contacto-datos banda-clara px-4 py-20 md:px-8 md:py-28 lg:py-36 lg:pr-16">
+        {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+        {s.titulo && <h2 class="titulo-seccion max-w-[13ch]">{s.titulo}</h2>}
+        {s.texto && <p class="titular-texto">{s.texto}</p>}
+        {c.email && (
+          <a href={`mailto:${c.email}`} class="enlace mt-10 inline-block font-display text-[clamp(1.35rem,3.2vw,2.6rem)] font-extralight tracking-tight break-all">
+            {c.email}
+          </a>
+        )}
+        <dl class="mt-12 grid gap-8 sm:grid-cols-2">
+          {c.telefono && (
+            <div>
+              <dt class="etiqueta text-[var(--c-suave)]">Teléfono</dt>
+              <dd class="mt-2 text-lg"><a class="enlace" href={tel(c.telefono)}>{c.telefono}</a></dd>
+            </div>
+          )}
+          {c.whatsapp && (
+            <div>
+              <dt class="etiqueta text-[var(--c-suave)]">WhatsApp</dt>
+              <dd class="mt-2 text-lg"><a class="enlace" href={whatsapp(c.whatsapp)} rel="noopener" target="_blank">Escríbenos</a></dd>
+            </div>
+          )}
+          {c.direccion && (
+            <div>
+              <dt class="etiqueta text-[var(--c-suave)]">Estudio</dt>
+              <dd class="mt-2"><a class="enlace" href={mapa(c.direccion)} rel="noopener" target="_blank">{c.direccion}</a></dd>
+            </div>
+          )}
+          {c.horario && (
+            <div>
+              <dt class="etiqueta text-[var(--c-suave)]">Horario</dt>
+              <dd class="mt-2">{c.horario}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+      <div class="contacto-form banda-acento sobre-acento px-4 py-20 md:px-8 md:py-28 lg:py-36 lg:pl-16">
+        <p class="etiqueta mb-10">Escríbenos</p>
+        <FormularioContacto boton="Enviar consulta" asunto={`Proyecto desde la web de ${site.nombre}`} />
+      </div>
+    </section>
+  )
+}
+
+<style>
+  /* En escritorio las dos mitades llegan al borde de la ventana y el contenido se alinea con el contenedor de 90 rem. */
+  @media (min-width: 1024px) {
+    .contacto-datos { padding-left: max(2rem, calc((100vw - 90rem) / 2 + 2rem)); }
+    .contacto-form { padding-right: max(2rem, calc((100vw - 90rem) / 2 + 2rem)); }
+  }
+  .contacto-form :global(.btn) { background: var(--c-primario); border-color: var(--c-primario); color: var(--c-fondo); }
+  .contacto-form :global(.btn:hover) { background: color-mix(in srgb, var(--c-primario) 80%, var(--c-fondo)); }
+  .contacto-form :global(a) { text-decoration: underline; text-underline-offset: 3px; }
+</style>

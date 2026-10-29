@@ -1,0 +1,34 @@
+---
+// Llamada a la acción: banda a sangre con foto de fondo y velo (o la tinta de la marca si no hay foto),
+// título enorme y dos botones.
+// Campos: antetitulo, titulo, texto, imagen, cta, cta_secundario.
+// También sirve de diseño para apartados nuevos (`tipo: cta`).
+import { seccion, boton } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const cta = boton(s?.cta);
+const cta2 = boton(s?.cta_secundario);
+---
+
+{
+  s && (s.titulo || s.texto || cta) && (
+    <section id={id} class="sobre-foto relative isolate overflow-hidden bg-primario text-white">
+      {s.imagen && <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1920} alto={900} class="absolute inset-0 -z-20 h-full w-full object-cover" />}
+      <div class="absolute inset-0 -z-10 bg-black/55" aria-hidden="true" />
+      <div class="contenedor flex min-h-[70svh] flex-col justify-center py-24 md:py-32">
+        {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+        {s.titulo && <h2 class="titulo-gigante mt-6 max-w-[16ch]">{s.titulo}</h2>}
+        {s.texto && <p class="mt-8 max-w-xl text-lg text-white/85 md:text-xl">{s.texto}</p>}
+        {(cta || cta2) && (
+          <p class="mt-10 flex flex-wrap gap-3">
+            {cta && <a class="btn" href={cta.url}>{cta.texto} <span class="flecha" aria-hidden="true">→</span></a>}
+            {cta2 && <a class="btn-sec" href={cta2.url}>{cta2.texto}</a>}
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}

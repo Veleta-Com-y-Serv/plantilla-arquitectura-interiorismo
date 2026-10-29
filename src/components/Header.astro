@@ -1,0 +1,59 @@
+---
+// Cabecera fija a todo el ancho: marca + menú (site.yaml → menu) + botón (boton_cabecera).
+// Sobre la portada es transparente y se vuelve sólida al bajar (script pequeño en línea); sin JavaScript, siempre sólida.
+// En móvil, menú plegable sin JavaScript (<details>). El aspecto está en src/styles/global.css (.cabecera).
+import { site } from '../data/site';
+import type { Enlace } from '../data/site';
+interface Props { variante?: string; cta?: Enlace | null }
+const { variante = 'plano', cta = null } = Astro.props;
+---
+
+<header class={`cabecera cabecera--${variante}`}>
+  <div class="contenedor cabecera-fila">
+    <a href="/" class="marca" aria-label={`${site.nombre}, inicio`}>
+      {
+        site.logo ? (
+          <img src={site.logo} alt={site.nombre} class="marca-logo" width="160" height="40" />
+        ) : (
+          <>
+            <span class="marca-inicial" aria-hidden="true">{site.nombre.trim().charAt(0)}</span>
+            <span class="marca-nombre">{site.nombre}</span>
+          </>
+        )
+      }
+    </a>
+    <nav class="cabecera-nav" aria-label="Menú principal">
+      {site.menu.map((e) => <a href={e.url}>{e.texto}</a>)}
+    </nav>
+    {cta && cta.url && <a href={cta.url} class="btn cabecera-cta">{cta.texto}</a>}
+    {
+      site.menu.length > 0 && (
+        <details class="menu-movil">
+          <summary>
+            <span class="menu-movil-icono" aria-hidden="true" />
+            <span>Menú</span>
+          </summary>
+          <nav class="menu-movil-panel" aria-label="Menú">
+            {site.menu.map((e) => <a href={e.url}>{e.texto}</a>)}
+            {cta && cta.url && <a href={cta.url} class="btn">{cta.texto}</a>}
+          </nav>
+        </details>
+      )
+    }
+  </div>
+</header>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var cab = document.querySelector('.cabecera');
+    if (!cab) return;
+    document.querySelectorAll('.menu-movil a').forEach(function (a) {
+      a.addEventListener('click', function () { a.closest('details').open = false; });
+    });
+    // Transparente solo si la página empieza por la portada a sangre.
+    if (!document.querySelector('main > .hero:first-child')) return;
+    cab.classList.add('cabecera--sobre');
+    var marcar = function () { cab.classList.toggle('cabecera--solida', window.scrollY > 40); };
+    marcar();
+    window.addEventListener('scroll', marcar, { passive: true });
+  });
+</script>

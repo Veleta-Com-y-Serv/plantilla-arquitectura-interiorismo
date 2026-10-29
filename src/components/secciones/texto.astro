@@ -1,0 +1,54 @@
+---
+// Apartado de texto genérico: banda clara; con foto, fila 50/50 con la foto a sangre (toca el borde de la ventana);
+// sin foto, titular a la izquierda y texto a la derecha a todo el ancho del contenedor.
+// Antetítulo, título, párrafos, lista con iconos y botón.
+// Lo usan los apartados nuevos que pide el cliente (site.yaml: `tipo: texto`).
+import { seccion, parrafos, boton } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const cta = boton(s?.cta);
+const items = s ? s.items.filter((it) => it && it.titulo) : [];
+---
+
+{
+  s && (
+    <section id={id} class:list={['banda-clara', s.imagen ? 'grid lg:grid-cols-2' : 'seccion']}>
+      {s.imagen && (
+        <div class="relative min-h-[20rem] lg:min-h-[38rem]">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1400} alto={1100} class="absolute inset-0 h-full w-full object-cover" />
+        </div>
+      )}
+      <div class:list={[s.imagen ? 'px-4 py-16 md:px-8 lg:px-16 lg:py-28 xl:px-24' : 'contenedor']}>
+        <div class:list={[!s.imagen && 'grid gap-4 lg:grid-cols-12 lg:gap-10']}>
+          <div class:list={[!s.imagen && 'lg:col-span-5']}>
+            {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+            {s.titulo && <h2 class="titulo-seccion">{s.titulo}</h2>}
+          </div>
+          <div class:list={[!s.imagen && 'lg:col-span-6 lg:col-start-7 lg:pt-10']}>
+            <div class="mt-8 max-w-xl space-y-4 text-lg text-[var(--c-suave)]">
+              {parrafos(s.texto).map((p) => <p>{p}</p>)}
+            </div>
+            {items.length > 0 && (
+              <ul class="mt-10 border-b border-[var(--c-linea)]">
+                {items.map((it) => (
+                  <li class="flex gap-4 border-t border-[var(--c-linea)] py-5">
+                    <Icono nombre={it.icono} class="mt-1 shrink-0 text-acento" tam={20} />
+                    <div>
+                      <p class="font-display text-xl font-light">{it.titulo}</p>
+                      {it.texto && <p class="mt-1 text-sm text-[var(--c-suave)]">{it.texto}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {cta && <a class="btn mt-10" href={cta.url}>{cta.texto} <span class="flecha" aria-hidden="true">→</span></a>}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,40 @@
+---
+// Premios y publicaciones: banda oscura con el título a la izquierda (fijo al bajar en escritorio) y, a la derecha,
+// filas con el año enorme en acento, el reconocimiento y quién lo da, separadas por líneas finas.
+// Campos: antetitulo, titulo, texto, `items[]` {titulo, texto, anio}. Sin elementos no se pinta.
+// También sirve de diseño para apartados nuevos (`tipo: premios`).
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const items = s ? s.items.filter((it) => it && it.titulo) : [];
+---
+
+{
+  s && items.length > 0 && (
+    <Seccion id={id} banda="oscura">
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <div class="lg:sticky lg:top-32">
+            <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} class="!mb-0" />
+          </div>
+        </div>
+        {items.length > 0 && (
+          <ul class="border-b border-[var(--c-oscuro-linea)] lg:col-span-7">
+            {items.map((it) => (
+              <li class="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-5 gap-y-2 border-t border-[var(--c-oscuro-linea)] py-7 md:grid-cols-[9rem_1fr] md:py-9">
+                <span class="numero text-4xl text-acento md:text-6xl">{it.anio || '—'}</span>
+                <div>
+                  <h3 class="text-[1.45rem] leading-tight md:text-[1.9rem]">{it.titulo}</h3>
+                  {it.texto && <p class="mt-2 text-[color-mix(in_srgb,var(--c-fondo)_72%,transparent)]">{it.texto}</p>}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </Seccion>
+  )
+}

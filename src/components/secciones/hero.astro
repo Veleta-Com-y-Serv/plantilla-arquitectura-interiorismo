@@ -1,0 +1,50 @@
+---
+// Portada a pantalla completa: foto a sangre con velo, título enorme en sans ligera abajo a la izquierda,
+// entradilla, dos botones y una línea de cota con la localidad. Sin foto, banda en la tinta de la marca.
+// Campos: antetitulo, titulo, texto, imagen, cta, cta_secundario.
+import { seccion, site, boton } from '../../data/site';
+import { altHero, localidad } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string; primera?: boolean }
+const { id, primera = false } = Astro.props;
+const s = seccion(id);
+const cta = boton(s?.cta);
+const cta2 = boton(s?.cta_secundario);
+const lugar = localidad();
+---
+
+{
+  s && (
+    <section id={id} class="hero sobre-foto relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-primario text-white">
+      {s.imagen && (
+        <Imagen src={s.imagen} alt={altHero()} ancho={1920} alto={1080} prioridad={primera} class="absolute inset-0 -z-20 h-full w-full object-cover" />
+      )}
+      <div class="hero-velo absolute inset-0 -z-10" aria-hidden="true" />
+      <div class="contenedor pt-32 pb-10 md:pb-14">
+        {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+        <h1 class="titulo-gigante mt-6 max-w-[15ch]">{s.titulo || site.nombre}</h1>
+        <div class="mt-8 grid gap-8 md:mt-12 md:grid-cols-12 md:items-end">
+          {s.texto && <p class="max-w-xl text-lg leading-relaxed text-white/85 md:col-span-6 md:text-xl">{s.texto}</p>}
+          {(cta || cta2) && (
+            <p class="flex flex-wrap gap-3 md:col-span-6 md:justify-end">
+              {cta && <a class="btn" href={cta.url}>{cta.texto} <span class="flecha" aria-hidden="true">→</span></a>}
+              {cta2 && <a class="btn-sec" href={cta2.url}>{cta2.texto}</a>}
+            </p>
+          )}
+        </div>
+        <div class="mt-12 flex items-center gap-4 text-white/75 md:mt-16">
+          <span class="etiqueta hidden whitespace-nowrap sm:inline">{site.nombre}</span>
+          <span class="cota flex-1" aria-hidden="true" />
+          {lugar && <span class="etiqueta whitespace-nowrap">{lugar}</span>}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .hero-velo {
+    background:
+      linear-gradient(to top, rgb(0 0 0 / 0.78) 0%, rgb(0 0 0 / 0.42) 45%, rgb(0 0 0 / 0.12) 75%, rgb(0 0 0 / 0.38) 100%);
+  }
+</style>

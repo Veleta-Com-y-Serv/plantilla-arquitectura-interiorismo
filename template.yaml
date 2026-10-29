@@ -1,0 +1,92 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: arquitectura-interiorismo
+nombre: Arquitectura e interiorismo
+descripcion: Web a ancho completo para estudios de arquitectura e interiorismo, con proyectos en mosaico a sangre.
+sectores:
+  - { id: arquitectura, nombre: Arquitectura }
+  - { id: interiorismo, nombre: Interiorismo }
+  - { id: decoracion, nombre: Decoración }
+  - { id: estudio-diseno, nombre: Estudio de diseño }
+  - { id: paisajismo, nombre: Paisajismo }
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: proyectos, nombre: Proyectos }
+  - { id: manifiesto, nombre: Manifiesto }
+  - { id: sobre-nosotros, nombre: El estudio }
+  - { id: servicios, nombre: Servicios }
+  - { id: proceso, nombre: Cómo trabajamos }
+  - { id: premios, nombre: Premios y publicaciones }
+  - { id: preguntas, nombre: Preguntas frecuentes }
+  - { id: cta, nombre: Llamada a la acción }
+  - { id: contacto, nombre: Contacto }
+estilo: minimal
+plan_minimo: presencia
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-arquitectura-interiorismo.noexpertise.com
+activa: true
+orden: 200
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: negocio
+    titulo: "Tu estudio"
+    pregunta: "¿Cómo se llama tu estudio y qué tipo de encargos hacéis?"
+    ayuda: "Qué hacéis (reformas, viviendas, interiorismo…), dónde y qué os distingue."
+    tipo: texto
+    campos: [nombre, eslogan, seo.titulo, seo.descripcion, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.texto]
+  - id: contacto
+    titulo: "Cómo te encuentran"
+    pregunta: "¿Dónde está el estudio y cómo os pueden llamar o escribir?"
+    ayuda: "Solo lo que quieras que vean tus clientes. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, redes.instagram, redes.linkedin]
+  - id: proyectos
+    titulo: "Tus proyectos"
+    pregunta: "Cuéntame algunos trabajos que quieras enseñar: qué era, dónde, el año y de qué tipo (vivienda, reforma, local…). Uno por línea."
+    ayuda: "Las fotos las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.proyectos.proyectos]
+  - id: sobre-nosotros
+    titulo: "Quiénes sois"
+    pregunta: "Cuéntame vuestra historia, vuestra forma de trabajar y una frase que os defina."
+    tipo: texto
+    campos: [secciones.sobre-nosotros.titulo, secciones.sobre-nosotros.texto, secciones.manifiesto.texto, secciones.manifiesto.autor]
+  - id: equipo
+    titulo: "Tu equipo"
+    pregunta: "¿Quién forma el estudio? Nombre y qué hace cada uno, uno por línea."
+    ayuda: "Las fotos las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.sobre-nosotros.personas]
+  - id: servicios
+    titulo: "Servicios"
+    pregunta: "¿Qué servicios ofrecéis? Uno por línea, con una frase de qué incluye."
+    ayuda: "Las fotos de cada servicio las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.servicios.items]
+  - id: proceso
+    titulo: "Cómo trabajáis"
+    pregunta: "¿Qué pasos sigue un encargo desde la primera visita hasta la entrega?"
+    tipo: texto
+    campos: [secciones.proceso.titulo, secciones.proceso.items]
+  - id: preguntas
+    titulo: "Preguntas frecuentes"
+    pregunta: "¿Qué os preguntan más a menudo? Escribe cada pregunta y lo que respondéis."
+    ayuda: "Si lo prefieres, añádelas luego en Contenido."
+    tipo: lista
+    campos: [secciones.preguntas.preguntas]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada y, si quieres, la del estudio y la de la banda final."
+    ayuda: "Sube las tuyas o elige una del banco. Las que no cambies se quedan como están."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.sobre-nosotros.imagen, secciones.cta.imagen]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso

@@ -1,0 +1,140 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+nombre: Arraiz Estudio
+eslogan: Arquitectura e interiorismo en Bilbao.
+sector: arquitectura
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre en texto.
+colores:
+  primario: "#161514"
+  acento: "#b4532f"
+  fondo: "#ffffff"
+  texto: "#161514"
+contacto:
+  telefono: "944 27 61 30"
+  email: hola@arraizestudio.es
+  direccion: "Calle Ercilla 24, 3.º izda., 48009 Bilbao (Bizkaia)"
+  horario: "Lunes a jueves, de 9:00 a 18:30. Viernes, de 8:30 a 14:30. Visitas al estudio con cita."
+  whatsapp: "+34 655 41 27 09"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: ""
+  linkedin: https://www.linkedin.com/
+menu:
+  - { texto: Proyectos, url: "/#proyectos" }
+  - { texto: Estudio, url: "/#sobre-nosotros" }
+  - { texto: Servicios, url: "/#servicios" }
+  - { texto: Proceso, url: "/#proceso" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Pide una visita, url: "/#contacto" }
+seo:
+  titulo: Arraiz Estudio · Arquitectura e interiorismo en Bilbao
+  descripcion: "Estudio de arquitectura e interiorismo en Bilbao: reformas de pisos, rehabilitación de caseríos, viviendas y locales en Bizkaia, del boceto a la obra."
+  tipo: ProfessionalService
+marca_pie: true
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Arquitectura · Interiorismo · Bizkaia
+    titulo: Casas con luz del norte.
+    texto: "Reformamos pisos, rehabilitamos caseríos y proyectamos viviendas y locales en Bilbao y alrededores. Pocos materiales, bien elegidos, y una obra que se entrega cuando se dijo."
+    imagen: /fotos/portada.jpg
+    cta: { texto: Ver proyectos, url: "/#proyectos" }
+    cta_secundario: { texto: Pide una visita, url: "/#contacto" }
+
+  proyectos:
+    activa: true
+    antetitulo: Proyectos
+    titulo: Obra reciente
+    texto: "Una selección de encargos de los últimos años: pisos de ensanche, casas frente al mar y caseríos que vuelven a tener vida."
+    proyectos:
+      - { titulo: Piso en Indautxu, texto: "Vivienda de 1925 de 140 m² recuperada: suelos de roble, molduras restauradas y una cocina abierta al mirador.", lugar: Bilbao, anio: "2025", imagen: /fotos/proyecto-indautxu.jpg, categoria: Interiorismo }
+      - { titulo: Caserío Etxetxu, texto: "Rehabilitación integral de un caserío del siglo XVIII: estructura de madera, piedra vista y cubierta nueva.", lugar: Muxika, anio: "2024", imagen: /fotos/proyecto-caserio.jpg, categoria: Rehabilitación }
+      - { titulo: Casa frente al Abra, texto: "Vivienda unifamiliar de hormigón claro y madera con un gran ventanal hacia el mar.", lugar: Getxo, anio: "2024", imagen: /fotos/proyecto-getxo.jpg, categoria: Vivienda }
+      - { titulo: Café Ola, texto: "Cafetería de 70 m² con barra de microcemento, bancos de pino y luz cálida para las tardes de invierno.", lugar: Bilbao La Vieja, anio: "2023", imagen: /fotos/proyecto-cafe.jpg, categoria: Comercial }
+      - { titulo: Oficinas en la ribera, texto: "Planta diáfana para 30 personas en una antigua nave junto a la ría, con salas de reunión de vidrio.", lugar: Zorrotzaurre, anio: "2023", imagen: /fotos/proyecto-oficinas.jpg, categoria: Comercial }
+      - { titulo: Ático en Abando, texto: "Terraza habitable, lucernarios y una biblioteca a medida bajo la cubierta inclinada.", lugar: Bilbao, anio: "2022", imagen: /fotos/proyecto-atico.jpg, categoria: Interiorismo }
+
+  manifiesto:
+    activa: true
+    antetitulo: Manifiesto
+    texto: "Una casa no se mide en metros, sino en cómo entra la luz a las ocho de la mañana."
+    autor: Nerea Arraiz, arquitecta
+
+  sobre-nosotros:
+    activa: true
+    antetitulo: El estudio
+    titulo: Un estudio pequeño a propósito.
+    texto: |
+      Arraiz Estudio abre en 2014 en el Ensanche de Bilbao. Somos cuatro personas y cada encargo lo llevan las mismas de principio a fin: quien dibuja el primer boceto es quien visita la obra.
+
+      Trabajamos con carpinteros, canteros y constructoras de Bizkaia que conocemos bien. Preferimos pocos materiales, nobles y del lugar: madera, piedra, cal y mucha luz.
+    imagen: /fotos/estudio.jpg
+    personas:
+      - { nombre: Nerea Arraiz, cargo: Arquitecta · Fundadora, foto: /placeholders/persona.svg, texto: "Dirige los proyectos y las obras de rehabilitación." }
+      - { nombre: Jon Etxebarria, cargo: Arquitecto técnico, foto: /placeholders/persona.svg, texto: "Presupuestos, licencias y seguimiento de obra." }
+      - { nombre: Ainhoa Uribe, cargo: Interiorista, foto: /placeholders/persona.svg, texto: "Materiales, iluminación y mobiliario a medida." }
+      - { nombre: Iker Sarasola, cargo: Delineante · Imagen 3D, foto: /placeholders/persona.svg, texto: "Planos, maquetas y vistas para decidir antes de obrar." }
+
+  servicios:
+    activa: true
+    antetitulo: Servicios
+    titulo: Qué hacemos
+    texto: "Del primer boceto a la entrega de llaves. Puedes encargarnos todo el proyecto o solo una parte."
+    items:
+      - { titulo: Reforma de vivienda, texto: "Pisos y casas: distribución, instalaciones, licencia y dirección de la obra.", imagen: /fotos/servicio-reforma.jpg }
+      - { titulo: Rehabilitación, texto: "Caseríos, casas de pueblo y edificios con historia, respetando lo que vale la pena.", imagen: /fotos/servicio-rehabilitacion.jpg }
+      - { titulo: Interiorismo, texto: "Materiales, color, iluminación y mobiliario a medida con carpinteros de la zona.", imagen: /fotos/servicio-interiorismo.jpg }
+      - { titulo: Locales y oficinas, texto: "Tiendas, cafeterías y espacios de trabajo con plazos cortos y obra ordenada.", imagen: /fotos/servicio-locales.jpg }
+    cta: { texto: Cuéntanos tu encargo, url: "/#contacto" }
+
+  proceso:
+    activa: true
+    antetitulo: Cómo trabajamos
+    titulo: Cinco pasos, sin sorpresas
+    texto: "Sabrás desde el principio qué se hace, cuándo y cuánto cuesta cada fase."
+    items:
+      - { titulo: Primera visita, texto: "Vemos el espacio contigo, escuchamos qué necesitas y te damos una idea de plazos.", duracion: "1 semana" }
+      - { titulo: Anteproyecto, texto: "Planos, primeras vistas en 3D y un presupuesto orientativo para decidir.", duracion: "3-4 semanas" }
+      - { titulo: Proyecto y licencia, texto: "Definimos cada detalle, pedimos ofertas a constructoras y tramitamos la licencia.", duracion: "1-2 meses" }
+      - { titulo: Obra, texto: "Visitamos la obra cada semana y resolvemos los imprevistos con la constructora.", duracion: "Según encargo" }
+      - { titulo: Entrega, texto: "Revisamos los remates contigo y te dejamos la documentación de la casa.", duracion: "Llave en mano" }
+
+  premios:
+    activa: true
+    antetitulo: Reconocimientos
+    titulo: Premios y publicaciones
+    texto: "Lo mejor que nos ha pasado son los clientes que vuelven. Esto también ayuda."
+    items:
+      - { titulo: Premio Itsasadarra de Rehabilitación, texto: "Caserío Etxetxu, Muxika.", anio: "2025" }
+      - { titulo: Selección de la Bienal del Cantábrico, texto: "Casa frente al Abra, Getxo.", anio: "2024" }
+      - { titulo: Mención Hábitat Norte de interiorismo, texto: "Piso en Indautxu, Bilbao.", anio: "2024" }
+      - { titulo: Publicado en una revista de vivienda, texto: "Ático en Abando, reportaje de seis páginas.", anio: "2022" }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas
+    titulo: Antes de empezar
+    texto: "Si tu duda no está aquí, llámanos o escríbenos: respondemos en el día."
+    preguntas:
+      - { pregunta: "¿Cuánto cuesta un proyecto?", respuesta: "Depende del tamaño y del tipo de encargo. Tras la primera visita te enviamos una propuesta de honorarios cerrada y dividida por fases." }
+      - { pregunta: "¿La primera visita tiene coste?", respuesta: "No. Vemos el espacio contigo, hablamos de lo que necesitas y te decimos con sinceridad si podemos ayudarte." }
+      - { pregunta: "¿Os encargáis de la licencia de obras?", respuesta: "Sí. Redactamos el proyecto, lo presentamos en el ayuntamiento y te avisamos de cada paso hasta tener la licencia." }
+      - { pregunta: "¿Trabajáis con una constructora concreta?", respuesta: "Pedimos ofertas a tres constructoras de confianza y te ayudamos a comparar. Tú decides con cuál seguir." }
+      - { pregunta: "¿Trabajáis fuera de Bilbao?", respuesta: "Sí, en toda Bizkaia y en Cantabria y Álava cercanas. Muchas de nuestras rehabilitaciones son caseríos." }
+
+  cta:
+    activa: true
+    antetitulo: Tu proyecto
+    titulo: "¿Empezamos por una visita?"
+    texto: "Trae fotos, planos o solo una idea. La primera conversación es sin compromiso."
+    imagen: /fotos/llamada.jpg
+    cta: { texto: Pide una visita, url: "/#contacto" }
+    cta_secundario: { texto: Ver proyectos, url: "/#proyectos" }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Cuéntanos tu proyecto
+    texto: "Escríbenos con lo que tengas en mente. Te respondemos en uno o dos días laborables."

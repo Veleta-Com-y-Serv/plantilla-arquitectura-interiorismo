@@ -1,0 +1,69 @@
+---
+// Pie a todo el ancho en la tinta de la marca (primario): marca y redes, contacto, menú y la firma enorme del nombre.
+// «Web creada con NoExpertise» se muestra si site.yaml → marca_pie no es false.
+import { site, tel, mapa, whatsapp } from '../data/site';
+import Icono from './ui/Icono.astro';
+interface Props { variante?: string }
+const { variante = 'plano' } = Astro.props;
+const c = site.contacto;
+const redes = Object.entries(site.redes).filter(([, url]) => url);
+const anio = new Date().getFullYear();
+---
+
+<footer class={`pie pie--${variante}`}>
+  <div class="contenedor pie-rejilla">
+    <div class="pie-marca">
+      <p class="pie-nombre">{site.nombre}</p>
+      {site.eslogan && <p class="pie-eslogan">{site.eslogan}</p>}
+      {
+        redes.length > 0 && (
+          <ul class="pie-redes">
+            {redes.map(([red, url]) => (
+              <li>
+                <a href={url} rel="noopener" target="_blank" aria-label={red}>
+                  <Icono nombre={red} tam={20} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+    {
+      (c.telefono || c.email || c.direccion || c.horario || c.whatsapp) && (
+        <div>
+          <p class="pie-titulo">Contacto</p>
+          <ul class="pie-lista">
+            {c.telefono && <li><a href={tel(c.telefono)}>{c.telefono}</a></li>}
+            {c.whatsapp && <li><a href={whatsapp(c.whatsapp)} rel="noopener" target="_blank">WhatsApp</a></li>}
+            {c.email && <li class="break-all"><a href={`mailto:${c.email}`}>{c.email}</a></li>}
+            {c.direccion && <li><a href={mapa(c.direccion)} rel="noopener" target="_blank">{c.direccion}</a></li>}
+            {c.horario && <li class="opacity-75">{c.horario}</li>}
+          </ul>
+        </div>
+      )
+    }
+    {
+      site.menu.length > 0 && (
+        <div>
+          <p class="pie-titulo">Web</p>
+          <ul class="pie-lista">
+            {site.menu.map((e) => <li><a href={e.url}>{e.texto}</a></li>)}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+  <p class="pie-firma mt-16 px-3 md:mt-24 md:px-6" aria-hidden="true">{site.nombre}</p>
+  <div class="contenedor pie-legal">
+    <span>© {anio} {site.nombre}</span>
+    <a href="/aviso-legal">Aviso legal y privacidad</a>
+    {
+      site.marca_pie && (
+        <span class="pie-noexpertise">
+          Web creada con <a href="https://noexpertise.com" rel="noopener">NoExpertise</a>
+        </span>
+      )
+    }
+  </div>
+</footer>

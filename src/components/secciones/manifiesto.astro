@@ -1,0 +1,36 @@
+---
+// Manifiesto: banda a todo el ancho en el color de acento con una frase enorme en sans ligera y su firma.
+// Campos: antetitulo, texto (la frase), autor. Sin frase no se pinta.
+// También sirve de diseño para apartados nuevos (`tipo: manifiesto`).
+import { seccion, campo } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const frase = s?.texto?.trim() ?? '';
+const autor = campo(s, 'autor');
+---
+
+{
+  s && frase && (
+    <Seccion id={id} banda="acento" etiqueta={s.antetitulo || s.titulo || undefined}>
+      <div class="grid gap-4 lg:grid-cols-12 lg:gap-10">
+        <div class="lg:col-span-3">
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          <span class="comilla mt-4 block text-[5rem] leading-[.7] opacity-50 lg:mt-8 lg:text-[10rem]" aria-hidden="true">“</span>
+        </div>
+        <figure class="lg:col-span-9">
+          <blockquote>
+            <p class="font-display text-[clamp(2rem,5vw,4.75rem)] leading-[1.06] font-extralight tracking-[-0.035em]">{frase}</p>
+          </blockquote>
+          {autor && (
+            <figcaption class="mt-10 flex items-center gap-4">
+              <span class="cota w-16" aria-hidden="true" />
+              <span class="etiqueta">{autor}</span>
+            </figcaption>
+          )}
+        </figure>
+      </div>
+    </Seccion>
+  )
+}
