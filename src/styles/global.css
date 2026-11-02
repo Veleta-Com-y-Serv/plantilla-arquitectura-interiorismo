@@ -139,6 +139,11 @@
     /* Cada pieza trae su tamaño en la rejilla de 6 columnas (--col, --fil) desde proyectos.astro. */
     .mosaico > li { grid-column: span var(--col, 2); grid-row: span var(--fil, 1); }
   }
+  .mosaico-cubre { position: absolute; inset: 0; z-index: 1; }
+  .mosaico-enlace { color: inherit; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s ease; }
+  .mosaico-enlace:hover, .mosaico li:hover .mosaico-enlace { background-size: 100% 1px; }
+  .mosaico-enlace:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+  .mosaico-ver { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: .4rem; margin-top: .9rem; color: #fff; pointer-events: none; }
   .filtro { min-height: 2.75rem; padding: .55rem 1.1rem; font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; border: 1px solid var(--c-linea); background: transparent; color: inherit; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
   .filtro { flex: none; }
   .filtros { scrollbar-width: none; }

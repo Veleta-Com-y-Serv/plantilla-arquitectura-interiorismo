@@ -2,9 +2,12 @@
 // Proyectos: mosaico asimétrico de borde a borde (sin márgenes) con pie sobre la foto y filtro por categoría.
 // Campos: antetitulo, titulo, texto y `proyectos[]` {titulo, texto, lugar, anio, imagen, categoria}.
 // El filtro sale solo si hay dos categorías o más (botones con un script pequeño en línea; sin JavaScript se ven todos).
+// Los proyectos con `detalle` tienen página propia (/proyectos/<slug>/): el título es un enlace y toda la pieza es clicable.
 // También sirve de diseño para apartados nuevos (`tipo: proyectos`).
 import { seccion, orden } from '../../data/site';
 import { altFicha } from '../../lib/seo';
+import { enlaceDe } from '../../lib/paginas';
+import Icono from '../ui/Icono.astro';
 import Seccion from '../ui/Seccion.astro';
 import Titular from '../ui/Titular.astro';
 import Imagen from '../ui/Imagen.astro';
@@ -48,15 +51,17 @@ const clave = (t: string) => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g
           {proyectos.map((p, i) => (
             <li style={`--col:${tam[i][0]};--fil:${tam[i][1]}`} data-categoria={clave(p.categoria ?? '')}>
               <figure>
+                {enlaceDe(p) && <a href={enlaceDe(p)} class="mosaico-cubre" tabindex="-1" aria-hidden="true"></a>}
                 <Imagen src={p.imagen} alt={altFicha(p)} ancho={tam[i][0] >= 4 ? 1600 : 900} alto={tam[i][1] === 2 ? 1100 : 700} />
                 <figcaption>
                   <p class="etiqueta flex items-center gap-3 text-white/80">
                     <span class="numero text-base tracking-normal">{orden(i)}</span>
                     {p.categoria && <span>{p.categoria}</span>}
                   </p>
-                  <h3 class="mt-3 text-[1.75rem] md:text-[clamp(1.6rem,2.4vw,2.6rem)]">{p.titulo}</h3>
+                  <h3 class="mt-3 text-[1.75rem] md:text-[clamp(1.6rem,2.4vw,2.6rem)]">{enlaceDe(p) ? <a href={enlaceDe(p)} class="mosaico-enlace">{p.titulo}</a> : p.titulo}</h3>
                   {(p.lugar || p.anio) && <p class="mt-2 text-sm text-white/80">{[p.lugar, p.anio].filter(Boolean).join(' · ')}</p>}
                   {p.texto && <p class="mt-3 line-clamp-2 max-w-xl text-sm text-white/75">{p.texto}</p>}
+                  {enlaceDe(p) && <span class="mosaico-ver etiqueta" aria-hidden="true">Ver proyecto <Icono nombre="flecha" tam={16} /></span>}
                 </figcaption>
               </figure>
             </li>

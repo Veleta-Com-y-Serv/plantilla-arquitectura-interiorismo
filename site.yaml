@@ -49,10 +49,54 @@ secciones:
     titulo: Obra reciente
     texto: "Una selección de encargos de los últimos años: pisos de ensanche, casas frente al mar y caseríos que vuelven a tener vida."
     proyectos:
-      - { titulo: Piso en Indautxu, texto: "Vivienda de 1925 de 140 m² recuperada: suelos de roble, molduras restauradas y una cocina abierta al mirador.", lugar: Bilbao, anio: "2025", imagen: /fotos/proyecto-indautxu.jpg, categoria: Interiorismo }
-      - { titulo: Caserío Etxetxu, texto: "Rehabilitación integral de un caserío del siglo XVIII: estructura de madera, piedra vista y cubierta nueva.", lugar: Muxika, anio: "2024", imagen: /fotos/proyecto-caserio.jpg, categoria: Rehabilitación }
-      - { titulo: Casa frente al Abra, texto: "Vivienda unifamiliar de hormigón claro y madera con un gran ventanal hacia el mar.", lugar: Getxo, anio: "2024", imagen: /fotos/proyecto-getxo.jpg, categoria: Vivienda }
-      - { titulo: Café Ola, texto: "Cafetería de 70 m² con barra de microcemento, bancos de pino y luz cálida para las tardes de invierno.", lugar: Bilbao La Vieja, anio: "2023", imagen: /fotos/proyecto-cafe.jpg, categoria: Comercial }
+      - titulo: Piso en Indautxu
+        texto: "Vivienda de 1925 de 140 m² recuperada: suelos de roble, molduras restauradas y una cocina abierta al mirador."
+        lugar: Bilbao
+        anio: "2025"
+        imagen: /fotos/proyecto-indautxu.jpg
+        categoria: Interiorismo
+        detalle: |
+          Cuando llegamos, el piso conservaba casi todo lo que importa: techos altos, un mirador a la calle y una carpintería antigua que merecía una segunda vida. Lo que no funcionaba era la distribución, con pasillos largos y una cocina cerrada al fondo.
+
+          Abrimos la cocina hacia el mirador para que la luz de la mañana llegue hasta el comedor, y recuperamos los suelos de roble lijándolos y barnizándolos con aceite, sin cambiar una sola tabla que pudiera salvarse. Las molduras de escayola se restauraron a mano, y las puertas originales se decaparon y volvieron a colgar.
+
+          Las instalaciones se renovaron por completo, pero quedaron ocultas para que nada compita con los materiales. Es un buen ejemplo de cómo trabajamos en el Ensanche: respeto por lo que ya existe, pocas piezas nuevas y bien elegidas, y una obra ordenada que la familia pudo seguir semana a semana.
+      - titulo: Caserío Etxetxu
+        texto: "Rehabilitación integral de un caserío del siglo XVIII: estructura de madera, piedra vista y cubierta nueva."
+        lugar: Muxika
+        anio: "2024"
+        imagen: /fotos/proyecto-caserio.jpg
+        categoria: Rehabilitación
+        detalle: |
+          Etxetxu llevaba años cerrado y la cubierta había cedido en una esquina. Antes de dibujar nada pasamos varios días con la familia propietaria y con un cantero de la comarca, recorriendo el edificio para entender qué estructura se podía conservar y qué había que sustituir.
+
+          El proyecto mantiene el esqueleto de madera, consolida los muros de piedra y deja la mampostería a la vista por dentro, donde antes había capas de yeso. La cubierta nueva repite la pendiente y el alero tradicionales, pero con aislamiento y una cámara ventilada que el caserío nunca había tenido.
+
+          En la planta baja, la antigua cuadra se ha convertido en una gran cocina con comedor, y arriba los dormitorios aprovechan las vigas vistas. Trabajaron carpinteros y canteros de la zona, con técnicas que conocen desde siempre. El resultado es una casa que sigue pareciendo un caserío, pero en la que se puede vivir con comodidad todo el año.
+      - titulo: Casa frente al Abra
+        texto: "Vivienda unifamiliar de hormigón claro y madera con un gran ventanal hacia el mar."
+        lugar: Getxo
+        anio: "2024"
+        imagen: /fotos/proyecto-getxo.jpg
+        categoria: Vivienda
+        detalle: |
+          El solar tiene una pendiente suave hacia el mar y unas vistas que lo condicionaban todo. La idea fue sencilla: una casa baja, de hormigón claro y madera, que se abre al Abra con un gran ventanal y se cierra con discreción hacia la calle para ganar intimidad.
+
+          En planta, la zona de día ocupa el frente y se prolonga en una terraza cubierta, de modo que el salón funciona casi como un porche en los meses templados. Los dormitorios quedan en la parte trasera, más recogidos, y se ordenan alrededor de un patio pequeño que aporta luz natural a los pasillos.
+
+          Elegimos pocos materiales y los dejamos a la vista: hormigón visto en fachada, carpintería de madera de roble y suelos continuos que unen interior y exterior. La orientación y los aleros se estudiaron para evitar el sol de verano sin perder luz en invierno. La casa fue seleccionada en la Bienal del Cantábrico.
+      - titulo: Café Ola
+        texto: "Cafetería de 70 m² con barra de microcemento, bancos de pino y luz cálida para las tardes de invierno."
+        lugar: Bilbao La Vieja
+        anio: "2023"
+        imagen: /fotos/proyecto-cafe.jpg
+        categoria: Comercial
+        detalle: |
+          El encargo era transformar un antiguo local de barrio en una cafetería acogedora sin gastar en decorados. Partimos de lo que había: techos altos, una columna de fundición en mitad de la sala y un suelo hidráulico que decidimos conservar.
+
+          La barra de microcemento recorre buena parte del local y organiza el servicio; frente a ella, los bancos de pino a medida aprovechan las paredes y dejan libre el centro para las mesas. La iluminación es cálida y baja, pensada para las tardes de invierno en Bilbao La Vieja, con focos orientables sobre la barra y lámparas sencillas sobre cada mesa.
+
+          Como el negocio no podía permanecer cerrado mucho tiempo, planificamos la obra por fases y coordinamos a los gremios para que cada uno entrara cuando tocaba. Fue un plazo corto y una obra limpia, algo que procuramos en todos los locales comerciales que proyectamos.
       - { titulo: Oficinas en la ribera, texto: "Planta diáfana para 30 personas en una antigua nave junto a la ría, con salas de reunión de vidrio.", lugar: Zorrotzaurre, anio: "2023", imagen: /fotos/proyecto-oficinas.jpg, categoria: Comercial }
       - { titulo: Ático en Abando, texto: "Terraza habitable, lucernarios y una biblioteca a medida bajo la cubierta inclinada.", lugar: Bilbao, anio: "2022", imagen: /fotos/proyecto-atico.jpg, categoria: Interiorismo }
 

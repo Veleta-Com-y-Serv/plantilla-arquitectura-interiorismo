@@ -58,3 +58,8 @@ texto ni logotipos. Las personas del equipo usan `/placeholders/persona.svg`.
 - Márgenes alrededor del mosaico o de la franja de servicios: tocan los bordes de la ventana.
 - Cifras o precios fijos en los componentes (solo en `site.yaml`).
 - Más de un color saturado: el acento es uno y se usa en bandas enteras, botones y números.
+
+## Páginas propias (fichas)
+Con la misma piel que la portada: cabecera y pie de la plantilla, migas (Inicio › Sección › Elemento), hero con la foto del
+elemento (sin foto, su icono), `detalle` en párrafos, tabla de datos, caja de contacto, galería (`imagenes`) y otros elementos
+de la misma lista.
